@@ -42,12 +42,14 @@ const IPinverse = [
 ];
 
 
+// this will divide the message into two halfs
 function dividPlaintextIntoHalves(binaryPT, position) {
     const firstPart = binaryPT.substring(0, position);
     const secondPart = binaryPT.substring(position);
     return { LHS: firstPart, RHS: secondPart };
 }
 
+// this will take the message and IP it 
 function InitialPermuation(binPT) {
     let Perumatedtext = "";
     IP_TABLE.forEach(element => {
@@ -56,6 +58,7 @@ function InitialPermuation(binPT) {
     return Perumatedtext;
 }
 
+// this will take the right halfe of the message and expand it from 32bit into 48bit
 function expansion(binPT) {
     let Perumatedtext = "";
     EXPANSION_TABLE.forEach(element => {
@@ -64,6 +67,7 @@ function expansion(binPT) {
     return Perumatedtext;
 }
 
+// this will xor the key with right half , 48,48
 function xor(bin1, bin2) {
     let finalresult = "";
     for (let i = 0; i < bin1.length; i++) {
@@ -75,6 +79,7 @@ function xor(bin1, bin2) {
     return finalresult.toString()
 }
 
+// mix the 32bit output 
 function P_boxing(binPT) {
     let Perumatedtext = "";
     PBox.forEach(element => {
@@ -82,6 +87,7 @@ function P_boxing(binPT) {
     });
     return Perumatedtext;
 }
+// this will IP inverse the message
 function IP_inverse(binPT) {
     let Perumatedtext = "";
     IPinverse.forEach(element => {
@@ -90,6 +96,8 @@ function IP_inverse(binPT) {
     return Perumatedtext;
 }
 
+
+// this will convert the binary to hex cipherText
 function bin2hex(bits) {
     const bitSegments = [];
     for (let i = 0; i < bits.length; i += 4) {

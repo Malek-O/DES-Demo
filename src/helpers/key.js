@@ -35,6 +35,8 @@ const PC2 = [
     '46', '42', '50', '36', '29', '32'
 ];
 
+
+// this will reduce the key into 56 bits , 
 function PermuatedChoice1(PC1, key) {
     let Perumatedtext = "";
     PC1.forEach(element => {
@@ -42,12 +44,15 @@ function PermuatedChoice1(PC1, key) {
     });
     return Perumatedtext
 }
+
+// this will divide the key into two halfs
 function diviedKeyIntoHalves(key, position) {
     const firstPart = key.substring(0, position);
     const secondPart = key.substring(position);
     return { LHS: firstPart, RHS: secondPart };
 }
 
+// this function will take the divided key and left circualr shift it according to the times eg. 1, 2
 function LeftCircularShift(dividedKey, times) {
     const halveKey = dividedKey;
     let NewBitsAfterLCS = ''
@@ -64,6 +69,8 @@ function LeftCircularShift(dividedKey, times) {
     });
     return NewBitsAfterLCS
 }
+
+// this function will take the keys and perform the LCS on it for 16 round
 function PerfromLCSonKeysFor16Rounds(key) {
     const LHS = key.LHS;
     const RHS = key.RHS;
@@ -84,7 +91,7 @@ function PerfromLCSonKeysFor16Rounds(key) {
     return keysAfterLeftCircularShift
 }
 
-
+// this function will take the 56bits, 16 round keys , and recuce it to 48bit 
 function perfromPC2(keys) {
     let Perumatedtext = "";
     const PC2Array = []
